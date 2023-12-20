@@ -1,9 +1,10 @@
-# exclude data from source control by default
-/data/
-
 # scrapy htttcache
 zbze_scrapy/.scrapy
 zbze_scrapy/.scrapy/httpcache
+
+#data/*/*.jl
+data/*/*.json
+#data/*/*.pdf
 
 # scrapy crawls snapshot
 zbze_scrapy/crawls
