@@ -21,7 +21,7 @@ class ApkbrRuSpider(CrawlSpider):
         self.dump_dir = f'../data/{self.name}'
         os.makedirs(self.dump_dir, exist_ok=True)
 
-        self.file = open(os.path.join(self.dump_dir, 'apkbr_ru.jl'), 'wb')
+        self.file = open(os.path.join(self.dump_dir, 'apkbr_ru.jsonl'), 'wb')
         self.exporter = JsonLinesItemExporter(self.file, encoding='utf-8', ensure_ascii=False)
         self.exporter.start_exporting()
 
