@@ -90,6 +90,10 @@ select = [
 
 ignore = [
     "T201",   # Allow print statements in spiders
+    "ERA001", # Allow commented-out code (examples in Scrapy templates)
+    "ARG002", # Allow unused method arguments (Scrapy interface requirements)
+    "SIM115", # Allow open() without context manager (Scrapy lifecycle)
+    "RUF012", # Allow mutable class attributes (Scrapy spiders use this pattern)
 ]
 
 # Allow autofix for all enabled rules (when `--fix` is provided)
