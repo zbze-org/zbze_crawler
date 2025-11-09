@@ -72,31 +72,54 @@ The crawler includes dedicated spiders for:
 | Tool | Description | Min Version |
 |------|-------------|-------------|
 | [Python](https://www.python.org/) | Programming language | 3.10+ |
-| [pip](https://pip.pypa.io/) | Package installer | Latest |
+| [uv](https://docs.astral.sh/uv/) | Fast Python package installer | Latest |
+
+**Install uv:**
+
+```bash
+# macOS/Linux
+curl -LsSf https://astral.sh/uv/install.sh | sh
+
+# Or with pip
+pip install uv
+```
 
 ### Install Dependencies
+
+**Using Makefile (recommended):**
 
 ```bash
 # Clone the repository
 git clone https://github.com/zbze-org/zbze-crawler.git
 cd zbze-crawler
 
-# Install dependencies
-pip install -r requirements.in
+# Create venv and install dependencies
+make install
 
-# Or use pip-tools for reproducible builds
-pip install pip-tools
-pip-sync
+# Or install with dev dependencies
+make install-dev
+```
+
+**Manual installation with uv:**
+
+```bash
+# Create virtual environment
+uv venv .venv
+
+# Activate virtual environment
+source .venv/bin/activate  # Unix/macOS
+# or
+.venv\Scripts\activate     # Windows
+
+# Install dependencies
+uv pip install -r requirements.in
 ```
 
 ### Verify Installation
 
 ```bash
-# Navigate to Scrapy project
-cd zbze_scrapy
-
 # List available spiders
-scrapy list
+make list-spiders
 ```
 
 Expected output:
@@ -111,7 +134,26 @@ oshhamaho
 
 ### Run a Spider
 
+**Using Makefile (recommended):**
+
 ```bash
+# Run a single spider
+make crawl-apkbr
+
+# Or other spiders
+make crawl-elgkbr
+make crawl-oshhamaho
+
+# Run all spiders
+make crawl-all
+```
+
+**Direct scrapy command:**
+
+```bash
+# Activate virtual environment first
+source .venv/bin/activate
+
 # Navigate to Scrapy project directory
 cd zbze_scrapy
 
@@ -120,9 +162,6 @@ scrapy crawl apkbr_ru
 
 # Run with specific settings
 scrapy crawl elgkbr_ru -s DOWNLOAD_DELAY=1
-
-# Run in background with logs
-scrapy crawl oshhamaho > crawler.log 2>&1 &
 ```
 
 ### Output Location
