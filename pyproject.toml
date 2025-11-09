@@ -1,0 +1,112 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "zbze-crawler"
+version = "0.1.0"
+description = "Web crawler for collecting Kabardian language texts from online sources"
+readme = "README.md"
+authors = [
+    { name = "Adam Panagov", email = "a.panagoa@gmail.com" }
+]
+license = { text = "MIT" }
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Internet :: WWW/HTTP",
+    "Topic :: Scientific/Engineering :: Information Analysis",
+    "Topic :: Text Processing :: Linguistic",
+]
+requires-python = ">=3.10"
+dependencies = [
+    "beautifulsoup4>=4.11.2",
+    "requests>=2.28.2",
+    "scrapy>=2.11.0",
+    "tinydb>=4.8.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "ruff>=0.11.5",
+    "pre-commit>=3.7.0",
+    "pip-tools>=7.3.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/zbze-org/zbze-crawler"
+Repository = "https://github.com/zbze-org/zbze-crawler"
+Issues = "https://github.com/zbze-org/zbze-crawler/issues"
+Documentation = "https://github.com/zbze-org/zbze-crawler#readme"
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+# Exclude a variety of commonly ignored directories
+exclude = [
+    ".git",
+    ".ruff_cache",
+    ".mypy_cache",
+    ".pytest_cache",
+    "__pypackages__",
+    "__pycache__",
+    "build",
+    "dist",
+    "data",
+    "zbze_scrapy/.scrapy",
+]
+
+[tool.ruff.lint]
+select = [
+    "E",      # pycodestyle errors
+    "W",      # pycodestyle warnings
+    "F",      # pyflakes
+    "I",      # isort
+    "UP",     # pyupgrade
+    "B",      # flake8-bugbear
+    "C4",     # flake8-comprehensions
+    "DTZ",    # flake8-datetimez
+    "FA",     # flake8-future-annotations
+    "ISC",    # flake8-implicit-str-concat
+    "PIE",    # flake8-pie
+    "T20",    # flake8-print
+    "Q",      # flake8-quotes
+    "RET",    # flake8-return
+    "SIM",    # flake8-simplify
+    "TID",    # flake8-tidy-imports
+    "ARG",    # flake8-unused-arguments
+    "ERA",    # eradicate
+    "PGH",    # pygrep-hooks
+    "PL",     # Pylint
+    "PERF",   # performance rules
+    "RUF",    # Ruff-specific rules
+]
+
+ignore = [
+    "T201",   # Allow print statements in spiders
+]
+
+# Allow autofix for all enabled rules (when `--fix` is provided)
+fixable = ["ALL"]
+unfixable = []
+
+[tool.ruff.lint.isort]
+known-first-party = ["zbze_scrapy"]
+
+[tool.ruff.lint.mccabe]
+max-complexity = 10
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.ruff.lint.pylint]
+max-args = 6
+max-branches = 12
+max-returns = 6
+max-statements = 50
